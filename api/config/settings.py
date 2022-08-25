@@ -45,13 +45,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'common.apps.CommonConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # TDL
+    'board',
+    # User Authentication app
+    'authentication',
+    # Library installed
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +148,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+AUTH_USER_MODEL = 'authentication.User'
+
+REST_USE_JWT = True                             # JWT 사용 여부
+JWT_AUTH_COOKIE = 'my-app-auth'                 # 호출할 cookie 값
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'    # refresh token cookie value
+
+SITE_ID = 1                                     # 해당 도메인의 id (django-site 테이블의 id)
+ACCOUNT_UNIQUE_EMAIL = True                     #  
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None        # 
+ACCOUNT_USERNAME_REQUIRED = False               #
+ACCOUNT_EMAIL_REQUIRED = True                   #
+ACCOUNT_AUTHENTICATION_METHOD = 'email'         # 로그인 인증 수단
+ACCOUNT_EMAIL_VERIFICATION = 'none'             # 이메일 인증 필수 여부
