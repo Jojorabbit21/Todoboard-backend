@@ -39,7 +39,8 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# 115.91.57.202:8000/api/get/board
 
 
 # Application definition
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # CORS
+    'corsheaders',
     # TDL
     'board',
     # User Authentication app
@@ -67,6 +70,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -168,3 +172,26 @@ ACCOUNT_USERNAME_REQUIRED = False               #
 ACCOUNT_EMAIL_REQUIRED = True                   #
 ACCOUNT_AUTHENTICATION_METHOD = 'email'         # 로그인 인증 수단
 ACCOUNT_EMAIL_VERIFICATION = 'none'             # 이메일 인증 필수 여부
+
+# CORS SETTINGS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)

@@ -12,7 +12,8 @@ class Board(models.Model):
     return self.title
   
 class Agenda(models.Model):
-  parent = models.ForeignKey(Board, on_delete=models.CASCADE)
+  id = models.AutoField(primary_key=True)
+  parent = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='agendas')
   title = models.CharField(max_length=50, verbose_name="To Do Title")
   completed = models.BooleanField(verbose_name="Completed")
   date_start = models.DateField(blank=False, default=timezone.now(), verbose_name="Date Start")
