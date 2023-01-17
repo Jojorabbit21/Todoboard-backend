@@ -18,23 +18,23 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_FILE = os.path.join(BASE_DIR, 'secret.json')
-with open(SECRET_FILE) as f:
-    SECRETS = json.loads(f.read()) 
+# SECRET_FILE = os.path.join(BASE_DIR, 'secret.json')
+# with open(SECRET_FILE) as f:
+#     SECRETS = json.loads(f.read()) 
 
-def get_secret(setting, secrets=SECRETS):
-    try:
-        return SECRETS[setting]
-    except KeyError:
-        error_message = "Set the {0} environment variable".format(setting)
-        raise ImproperlyConfigured(error_message)
+# def get_secret(setting, secrets=SECRETS):
+#     try:
+#         return SECRETS[setting]
+#     except KeyError:
+#         error_message = "Set the {0} environment variable".format(setting)
+#         raise ImproperlyConfigured(error_message)
         
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-*%@$2nr7rz=mon25xr0fnx3sa*-kvq*)&+-42#qh9m3(ld@(l6'
-SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = 'django-insecure-*%@$2nr7rz=mon25xr0fnx3sa*-kvq*)&+-42#qh9m3(ld@(l6'
+# SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
